@@ -1,7 +1,13 @@
-hostname,os,sysname,hardware,location_id,ro
-192.168.2.40,ciscowap,"Bldg 123, Room 1",AIR-LAP1142N-A-K9,721,
-192.168.2.41,ciscowap,"Bldg 123, Room 2",AIR-LAP1142N-A-K9,721,
-192.168.2.42,ciscowap,"Bldg 123, Room 3",AIR-LAP1142N-A-K9,721,
-192.168.2.43,ciscowap,"Bldg 123, Room 4",AIR-LAP1142N-A-K9,721,
-192.168.2.44,ciscowap,"Bldg 123, Room 5",AIR-LAP1142N-A-K9,721,
-192.168.2.2,,,,,publicsnmpstring
+hostname,os,sysname,hardware,syslocation,lat,lng,community,snmp_force,snmp_version
+10.1.1.10,,Core Router,Cisco-ISR4451,Data Center,-31.9600,115.8600,network,TRUE,v2c
+10.1.1.11,,Edge Switch,Juniper-EX4300,Main Office,-32.0200,115.8500,public,FALSE,v3
+10.1.1.12,,Old Switch,HP-Procurve,Remote Hut,,,private,TRUE,v1
+10.1.1.13,,Wireless AP,Ubiquiti-UAP,Warehouse,-32.0001,115.9000,public,FALSE,v2c
+10.1.1.14,,Printer Room Printer,Brother-Laser,Printer Room,-32.0100,115.8100,,,
+10.1.1.15,,Pingonly PC,Generic x86,Lab Room,,,
+10.1.1.16,,Test Server,DELL-R640,Linux Lab,-32.0543,115.9931,supersecret,TRUE,v3
+10.1.1.17,,Environmental Sensor,IOT-EnvSens,Greenhouse,,,,
+10.1.1.18,,Boardroom TV,Sony-XBR,Boardroom,-32.0000,115.8900,,
+10.1.1.19,,Spare Router,Cisco-ISR1100,Test Site,,-32.9999,public,FALSE,v2c
+10.1.1.20,,Camera-1,Hikvision-DS2CC,Entrance,-31.9990,115.8500,,,
+10.1.1.21,,Random Dev,Random-HW,,,,,,
