@@ -107,6 +107,7 @@ for index, row in df.iterrows():
     lng = row['lng'] if 'lng' in df.columns and not pd.isna(row['lng']) else None
     snmp_force = str(row['snmp_force']).strip().lower() == 'true' if 'snmp_force' in df.columns and not pd.isna(row['snmp_force']) else False
     snmp_version = str(row['snmp_version']).strip() if 'snmp_version' in df.columns and not pd.isna(row['snmp_version']) else 'v2c'
+    sysname = row['sysname'] if 'sysname' in df.columns and not pd.isna(row['sysname']) else ""
 
     # Skip devices that already exist
     if device_exists(hostname):
@@ -117,7 +118,7 @@ for index, row in df.iterrows():
     if not community:  # Ping-only
         add_device = {
             "hostname": hostname,
-            "sysName": row['sysname'] if 'sysname' in df.columns and not pd.isna(row['sysname']) else "",
+            "sysName": sysname,
             "hardware": row['hardware'] if 'hardware' in df.columns and not pd.isna(row['hardware']) else "",
             "snmp_disable": "true",
             "force_add": "true"  # always force add for ping-only
@@ -136,6 +137,14 @@ for index, row in df.iterrows():
     if not device_id:
         continue
 
+    # Explicitly update sysName after add if set (fix for sysName field not sticking)
+    if sysname:
+        update_sysname = {
+            "field": ["display"],
+            "data": [sysname]
+        }
+        device_update(device_id, update_sysname)
+
     # Assign location for new devices only
     if syslocation:
         loc_id = get_or_create_location_id(syslocation, lat, lng)
@@ -145,3 +154,4 @@ for index, row in df.iterrows():
                 "data": [loc_id, syslocation, 1]
             }
             device_update(device_id, details)
+
